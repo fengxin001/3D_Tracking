@@ -33,3 +33,27 @@ In this final project, you will implement the missing parts in the schematic. To
 2. Make a build directory in the top level project directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
 4. Run it: `./3D_object_tracking`.
+
+FP.1 Match 3D Objects
+Refer to line 226- 229 in FinalProject_Camera.cpp
+
+FP.2 Compute Lidar-based TTC
+Refer to line 264- 267 in FinalProject_Camera.cpp
+
+FP.3 Associate Keypoint Correspondences with Bounding Boxes
+Refer to line 271 in FinalProject_Camera.cpp
+
+FP.4 Compute Camera-based TTC
+Refer to line 274-275 in FinalProject_Camera.cpp
+
+The detail of functions listed above are in camFusion_Student.cpp. 
+
+FP.5 Performance Evaluation 1
+Find examples where the TTC estimate of the Lidar sensor does not seem plausible. Describe your observations and provide a sound argumentation why you think this happened.
+
+when both car and ego vehicle slow down and close to stationary, the TTC estimation does not seem plausible. It is mainly result from the calculation of relative velocity, which becomes noisy and sometime it could be negative. An alternative way could be adding a low pass filter for relative velocity when it lower than certain threshold.
+
+FP.6 Performance Evaluation 2
+Run several detector / descriptor combinations and look at the differences in TTC estimation. Find out which methods perform best and also include several examples where camera-based TTC estimation is way off. As with Lidar, describe your observations again and also look into potential reasons.
+
+In this project, SIFT Detector and BRISK descriptor works relative faster than other, such as FREAK and Others. SIFT Dectector and SIFT descriptor get relative accurate estimation for TTC. Their camera-based TTC is calculated close to LiDAR-based TTC, comparing with other combination of detectors/descriptors. 
